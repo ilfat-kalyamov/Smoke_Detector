@@ -147,7 +147,7 @@ def test(dataloader , model , loss_fn):
             size+= target_.shape[0]
     return epoch_correct/size  , epoch_loss / num_baches
 
-EPOCHS = 50
+EPOCHS = 40
 logs = {"train_loss":[] , "train_acc":[] , "val_loss":[] , "val_acc":[]}
 
 if os.path.exists('checkpoints') == False:

@@ -163,6 +163,4 @@ poetry.lock
 
 test_images/
 saved_models/
-data/
-checkpoints/
 .vscode/

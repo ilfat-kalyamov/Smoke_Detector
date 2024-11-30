@@ -6,11 +6,11 @@ from modules.tg.config import dp
 
 @dp.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
-    await message.answer(f"Привет, {html.bold(message.from_user.full_name)}!\nЯ нейросеть для распознавания факта курения.\n\nОтправь мне фотографию и я вынесу свой вердикт.\n\n/help - помощь")
+    await message.answer(f"Привет, {html.bold(message.from_user.full_name)}!\nЯ нейросеть для распознавания факта курения.\n\nОтправь мне фотографию и я вынесу свой вердикт.\n\n/credits - информация")
 
-@dp.message(Command('help'))
+@dp.message(Command('credits'))
 async def help_handler(message: Message) -> None:
-    await message.answer("Разработчик: @for_what_or")
+    await message.answer(f'Проект разработан для дисциплины "{html.italic("Распознавание образов и машинное обучение")}".\n\nРазработчик: @for_what_or')
 
 @dp.message(F.photo)
 async def image_handler(message: Message) -> None:
