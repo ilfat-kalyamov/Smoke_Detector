@@ -161,6 +161,8 @@ cython_debug/
 
 poetry.lock
 
-test_images/
 saved_models/
 .vscode/
+data/
+.data/
+checkpoints/
