@@ -4,7 +4,7 @@ from torchvision import models, transforms
 from PIL import Image
 
 # Определите устройство
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cpu')
 
 # Загрузите модель
 model = models.swin_v2_b(weights='DEFAULT')

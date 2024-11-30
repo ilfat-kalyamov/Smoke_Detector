@@ -85,7 +85,7 @@ class MyDataset(torch.utils.data.Dataset):
         return transformed_img , class_id
 
 BATCH_SIZE = 6
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cpu')
 #num_workers = 2 if device == 'cuda' else 4
 
 train_dataset = MyDataset(train_df , train_transforms)
