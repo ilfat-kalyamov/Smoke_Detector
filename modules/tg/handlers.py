@@ -2,13 +2,21 @@ from aiogram import html, F
 from aiogram.types import Message
 from aiogram.filters import CommandStart, Command
 from modules.tg.config import bot
+from aiogram.methods import SendMessage
+from modules.tg.config import ADMIN_ID
 
 from modules.tg.config import dp
+
 from modules.ai.detect import predict_image, predict_transforms
 from modules.ai.config import load_model
 
+#bot.send_message(chat_id=ADMIN_ID, text="Бот запущен! Загружаю модель...")
+
+
 device, model = load_model()
 label_list = ['notsmoking', 'smoking']
+
+SendMessage(chat_id=ADMIN_ID, text="Модель загружена! Бот готов к работе.")
 
 @dp.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
