@@ -9,4 +9,4 @@ def load_model():
     model.load_state_dict(torch.load('checkpoints/best.pth'))
     model.to(device)
     model.eval()
-    return model
+    return device, model

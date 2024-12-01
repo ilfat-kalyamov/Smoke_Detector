@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import sys
+from modules.ai.config import load_model
 
 from modules.tg.bot import start_bot
 
