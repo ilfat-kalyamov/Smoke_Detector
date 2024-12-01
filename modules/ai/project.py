@@ -147,7 +147,7 @@ def test(dataloader , model , loss_fn):
             size+= target_.shape[0]
     return epoch_correct/size  , epoch_loss / num_baches
 
-EPOCHS = 40
+EPOCHS = 50
 logs = {"train_loss":[] , "train_acc":[] , "val_loss":[] , "val_acc":[]}
 
 if os.path.exists('checkpoints') == False:
@@ -167,7 +167,7 @@ multi_step_lr_scheduler = lr_scheduler.MultiStepLR(optmizer ,
                                                    gamma = .1)
 
 #Early stopping parameters
-patience = 4
+patience = 8
 counter = 0
 best_loss = np.inf
 
