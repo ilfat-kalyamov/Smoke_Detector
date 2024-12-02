@@ -24,9 +24,7 @@ def predict_image(image_path, model, transforms, device):
     # Сделать предсказание
     with torch.no_grad():
         outputs = model(image)
-        print(outputs)
         _, predicted = torch.max(outputs, 1)
-        print(predicted)
     
     predicted_label = label_list[predicted.item()]
 
