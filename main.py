@@ -1,6 +1,4 @@
 import asyncio
-import logging
-import sys
 from modules.tg.config import setup_logging
 
 from modules.tg.bot import start_bot

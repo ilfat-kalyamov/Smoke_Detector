@@ -10,13 +10,8 @@ from modules.tg.config import dp
 from modules.ai.detect import predict_image, predict_transforms
 from modules.ai.config import load_model
 
-#bot.send_message(chat_id=ADMIN_ID, text="Бот запущен! Загружаю модель...")
-
-
 device, model = load_model()
 label_list = ['notsmoking', 'smoking']
-
-SendMessage(chat_id=ADMIN_ID, text="Модель загружена! Бот готов к работе.")
 
 @dp.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
@@ -24,20 +19,17 @@ async def command_start_handler(message: Message) -> None:
 
 @dp.message(Command('credits'))
 async def help_handler(message: Message) -> None:
-    await message.answer(f'Проект разработан для дисциплины "{html.italic("Распознавание образов и машинное обучение")}".\n\nРазработчик: @for_what_or')
+    await message.answer(f'Проект разработан для дисциплины "{html.italic("Распознавание образов и машинное обучение")}".\n\nРазработчики: @for_what_or @h1dio')
 
 @dp.message(F.photo)
 async def image_handler(message: Message) -> None:
-    await message.answer("Фото получено...")
+    await message.reply("Фото получено...")
     file_id = message.photo[-1].file_id
     await bot.download(file=file_id, destination="work/file.png")
-    #await message.answer(file_path)
 
     predicted_class = predict_image("work/file.png", model, predict_transforms, device)
     predicted_label = label_list[predicted_class]
-    answer = message.photo[-1].file_id
-    await message.answer(answer)
-    await message.answer(f"Предсказанный класс: {predicted_label}")
+    await message.reply(f"Предсказанный класс: {predicted_label}")
 
 @dp.message()
 async def echo_handler(message: Message) -> None:
