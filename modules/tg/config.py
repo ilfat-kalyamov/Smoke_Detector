@@ -14,14 +14,12 @@ ADMIN_ID = getenv("ADMIN_ID")
 os.makedirs("logs", exist_ok=True)
 log_file = "logs/bot.log"
 
-rotating_handler = RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024, backupCount=5)
-
 def setup_logging():
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[
-            rotating_handler,  # Запись логов в файл
+            RotatingFileHandler(log_file, maxBytes=5 * 1024 * 1024, backupCount=5)
         ]
     )
 
