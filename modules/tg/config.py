@@ -25,3 +25,7 @@ def setup_logging():
 
 dp = Dispatcher()
 bot = Bot(token=BOT_TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
+
+async def on_error(update, exception):
+    logging.error(f"Update {update} caused error {exception}")
+    bot.send_message(chat_id=ADMIN_ID, text=f"Update {update} caused error {exception}")
