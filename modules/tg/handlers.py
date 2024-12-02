@@ -27,7 +27,7 @@ async def image_handler(message: Message) -> None:
 
     label = predict_image("work/file.png", model, predict_transforms, device)
     os.remove("work/file.png")
-    await message.reply(f"Предсказанный класс: {label}")
+    await message.reply(f"Вердикт: {label}")
 
 @dp.message()
 async def echo_handler(message: Message) -> None:
