@@ -32,27 +32,3 @@ def predict_image(image_path, model, transforms, device):
 
     return predicted_label
 
-# Путь к вашему изображению
-"""image_path1 = 'test_images/image1.png'
-image_path2 = 'test_images/image2.png'
-image_path3 = 'test_images/image3.png'
-image_path4 = 'test_images/image4.png'
-
-# Сделать предсказание
-predicted_class_id1 = predict_image(image_path1, model, predict_transforms, device)
-predicted_class_id2 = predict_image(image_path2, model, predict_transforms, device)
-predicted_class_id3 = predict_image(image_path3, model, predict_transforms, device)
-predicted_class_id4 = predict_image(image_path4, model, predict_transforms, device)
-
-# Определить метку класса
-label_list = ['notsmoking', 'smoking']  # Замените на свои метки, если они отличаются
-predicted_label1 = label_list[predicted_class_id1]
-predicted_label2 = label_list[predicted_class_id2]
-predicted_label3 = label_list[predicted_class_id3]
-predicted_label4 = label_list[predicted_class_id4]
-
-print(f'Предсказанный класс для изображения 1: {predicted_label1}')
-print(f'Предсказанный класс для изображения 2: {predicted_label2}')
-print(f'Предсказанный класс для изображения 3: {predicted_label3}')
-print(f'Предсказанный класс для изображения 4: {predicted_label4}')"""
-

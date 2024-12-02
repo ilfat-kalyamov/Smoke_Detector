@@ -21,12 +21,13 @@ async def help_handler(message: Message) -> None:
 
 @dp.message(F.photo)
 async def image_handler(message: Message) -> None:
-    await message.reply("Фото получено...")
+    #await message.reply("Фото получено...")
     file_id = message.photo[-1].file_id
-    await bot.download(file=file_id, destination="work/file.png")
+    file_name = str(message.chat.id) + "_" + str(message.message_id) + ".png"
+    await bot.download(file=file_id, destination=f"work/{file_name}")
 
-    label = predict_image("work/file.png", model, predict_transforms, device)
-    os.remove("work/file.png")
+    label = predict_image(f"work/{file_name}", model, predict_transforms, device)
+    os.remove(f"work/{file_name}")
     await message.reply(f"Вердикт: {label}")
 
 @dp.message()
