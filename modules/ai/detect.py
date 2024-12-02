@@ -5,6 +5,7 @@ from modules.ai.config import load_model
 
 # Определите устройство
 device, model = load_model()
+label_list = ['Не курит', 'Курит']
 
 predict_transforms = transforms.Compose([
     transforms.Resize((224, 224)),
@@ -26,8 +27,10 @@ def predict_image(image_path, model, transforms, device):
         print(outputs)
         _, predicted = torch.max(outputs, 1)
         print(predicted)
+    
+    predicted_label = label_list[predicted.item()]
 
-    return predicted.item()
+    return predicted_label
 
 # Путь к вашему изображению
 """image_path1 = 'test_images/image1.png'

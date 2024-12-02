@@ -1,17 +1,15 @@
 from aiogram import html, F
+from aiogram.filters import Command, CommandStart
 from aiogram.types import Message
-from aiogram.filters import CommandStart, Command
-from modules.tg.config import bot
-from aiogram.methods import SendMessage
-from modules.tg.config import ADMIN_ID
 
-from modules.tg.config import dp
+import os
 
-from modules.ai.detect import predict_image, predict_transforms
 from modules.ai.config import load_model
+from modules.ai.detect import predict_image, predict_transforms
+
+from modules.tg.config import bot, dp
 
 device, model = load_model()
-label_list = ['notsmoking', 'smoking']
 
 @dp.message(CommandStart())
 async def command_start_handler(message: Message) -> None:
@@ -27,9 +25,9 @@ async def image_handler(message: Message) -> None:
     file_id = message.photo[-1].file_id
     await bot.download(file=file_id, destination="work/file.png")
 
-    predicted_class = predict_image("work/file.png", model, predict_transforms, device)
-    predicted_label = label_list[predicted_class]
-    await message.reply(f"Предсказанный класс: {predicted_label}")
+    label = predict_image("work/file.png", model, predict_transforms, device)
+    os.remove("work/file.png")
+    await message.reply(f"Предсказанный класс: {label}")
 
 @dp.message()
 async def echo_handler(message: Message) -> None:
