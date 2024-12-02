@@ -1,7 +1,6 @@
 from aiogram.filters import BaseFilter, Command
-from aiogram.types import Message
-from aiogram import F
-from modules.tg.config import ADMIN_ID
+from aiogram.types import Message, FSInputFile
+from modules.tg.config import ADMIN_ID, log_file
 
 from aiogram import Router
 
@@ -10,11 +9,16 @@ admin_router = Router()
 class IsAdmin(BaseFilter):
     def __init__(self) -> None:
         self.admin_id = int(ADMIN_ID)
-
     async def __call__(self, message: Message) -> bool:
         return message.from_user.id == int(ADMIN_ID)
-
-
 @admin_router.message(IsAdmin(), Command('admin'))
 async def admin_handler(message: Message) -> None:
     await message.answer("Админ обработчик сработал")
+
+@admin_router.message(IsAdmin(), Command('logs'))
+async def log_sender(message: Message) -> None:
+    try:
+        logs = FSInputFile(log_file)
+        await message.answer_document(logs)
+    except Exception as e:
+        await message.answer("Не удалось отправить лог-файл")
