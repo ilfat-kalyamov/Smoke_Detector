@@ -17,12 +17,12 @@ class IsAdmin(BaseFilter):
 @admin_router.message(IsAdmin(), Command('start'))
 async def admin_start_handler(message: Message) -> None:
     await message.answer(f"Привет, {html.bold(message.from_user.full_name)}!\nЯ нейросеть для распознавания факта курения.\n\nОтправь мне фотографию и я вынесу свой вердикт.\n\n/credits - информация\n\nВам доступна админ панель:\n/admin - Команды администрирования")
-    logging.info(f"Admin {message.from_user.full_name}({message.from_user.username}|{message.from_user.id}) used the ADMIN comand /start")
+    logging.info(f"Admin {message.from_user.full_name} (@{message.from_user.username}|id:{message.from_user.id}) used the ADMIN comand /start")
 
 @admin_router.message(IsAdmin(), Command('admin'))
 async def admin_handler(message: Message) -> None:
     await message.answer("Админ панель:\n\n/logs - отправить лог-файл")
-    logging.info(f"Admin {message.from_user.full_name}({message.from_user.username}|{message.from_user.id}) used the ADMIN comand /admin")
+    logging.info(f"Admin {message.from_user.full_name} (@{message.from_user.username}|id:{message.from_user.id}) used the ADMIN comand /admin")
 
 @admin_router.message(IsAdmin(), Command('logs'))
 async def log_sender(message: Message) -> None:
@@ -31,4 +31,4 @@ async def log_sender(message: Message) -> None:
         await message.answer_document(logs)
     except Exception as e:
         await message.answer("Не удалось отправить лог-файл")
-    logging.info(f"Admin {message.from_user.full_name}({message.from_user.username}|{message.from_user.id}) used the ADMIN comand /logs")
+    logging.info(f"Admin {message.from_user.full_name} (@{message.from_user.username}|id:{message.from_user.id}) used the ADMIN comand /logs")
